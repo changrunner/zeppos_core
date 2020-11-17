@@ -1,4 +1,4 @@
-from zeppos_logging.setup_logger import logger
+from zeppos_logging.app_logger import AppLogger
 import time
 from datetime import datetime
 
@@ -14,7 +14,7 @@ class Timer:
         self._end_time = datetime.now()
 
     def pause(self, time_in_seconds):
-        logger.debug(f'Sleep for [{time_in_seconds}] seconds')
+        AppLogger.logger.debug(f'Sleep for [{time_in_seconds}] seconds')
         time.sleep(time_in_seconds)
 
     @property

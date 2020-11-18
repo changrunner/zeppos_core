@@ -6,6 +6,7 @@ from zeppos_logging.app_logger import AppLogger
 class TestTheProjectMethods(unittest.TestCase):
     def test_start_stop_test_methods(self):
         AppLogger.configure_and_get_logger('start_stop_test')
+        AppLogger.set_debug_level()
 
         with LogCapture() as lc:
             timer = Timer()

@@ -18,7 +18,7 @@ testfixtures = ">=6.15.0"
 freezegun = "*"
 
 [packages]
-zeppos-logging = ">=1.0.6"
+zeppos-logging = ">=1.0.7"
 
 [requires]
 python_version = "3.7"

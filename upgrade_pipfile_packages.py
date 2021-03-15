@@ -1,8 +1,9 @@
 from subprocess import Popen, PIPE
 
 
-def run_command(command):
-    p = Popen(command.split(' '), stdout=PIPE)
+def run_command(command_list):
+    print(f"run_command: {command_list}")
+    p = Popen(command_list, stdout=PIPE)
     out, err = p.communicate()
     print(f"run_command out: {out}")
     print(f"run_command err: {err}")
@@ -11,7 +12,7 @@ def run_command(command):
 
 def get_dict_of_packages():
     print("get_dict_of_packages")
-    # package_list = run_command("pipenv run pip list --outdated --extra-index-url=https://test.pypi.org/simple")
+    # package_list = run_command("pipenv run pip list --outdated --extra-index-url=https://test.pypi.org/simple".split(" "))
     package_list = ['Package            Version Latest Type', '------------------ ------- ------ -----', 'idna               2.10    3.1    wheel', 'importlib-metadata 3.7.0   3.7.2  wheel', 'keyring            22.3.0  23.0.0 wheel', 'Pygments           2.8.0   2.8.1  wheel', 'setuptools         52.0.0  54.1.1 wheel', 'tqdm               4.58.0  4.59.0 wheel', 'zeppos-logging     1.0.15  1.0.16 wheel', '\x1b[0m']
     package_dict = {}
     for package in [p for p in package_list if 'zeppos' in p.strip()]:
@@ -53,15 +54,15 @@ def update_pipfile(outdated_packages):
 
 def upgrade_pipenv():
     print("upgrade_pipenv")
-    run_command("pipenv --rm")
-    run_command("pipenv install")
-    run_command("pipenv install --dev")
+    run_command("pipenv --rm".split(" "))
+    run_command("pipenv install".split(" "))
+    run_command("pipenv install --dev".split(" "))
 
 def commit_changes_to_git():
     print("commit_changes_to_git")
-    run_command("git add --all")
-    run_command('git commit -m "update library"')
-    run_command("git push")
+    run_command("git add --all".split(" "))
+    run_command(["git", "commit", "-m 'update library'"])
+    run_command("git push".split(" "))
 
 
 def upgrade_packages():
